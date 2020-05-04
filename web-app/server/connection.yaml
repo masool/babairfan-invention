@@ -1,0 +1,156 @@
+---
+name: veritable-channel.firstnetwork.connectionprofile
+x-type: "hlfv1"
+description: "BankPeerContract methods will be used through this profile"
+version: "1.0"
+
+channels:
+  veritable-channel:
+    orderers:
+      - orderer.veritable.com
+    peers:
+      peer0.notary.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.client.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.notary.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.client.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer0.parties.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.parties.veritable.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+organizations:
+  notary:
+    mspid: notaryMSP
+    peers:
+      - peer0.notary.veritable.com
+      - peer1.notary.veritable.com
+    certificateAuthorities:
+      - ca.notary.veritable.com
+    adminPrivateKey:
+      path: ../../veritable-network/crypto-config/peerOrganizations/notary.veritable.com/users/Admin@notary.veritable.com/msp/keystore/346f5353800bd82ae606c98ff194b62b1fd9e6bd898755943f3c91f1fca040b6_sk
+    signedCert:
+      path: ../../veritable-network/crypto-config/peerOrganizations/notary.veritable.com/users/Admin@notary.veritable.com/msp/signcerts/Admin@notary.veritable.com-cert.pem
+  
+  client:
+    mspid: clientMSP
+    peers:
+      - peer0.client.veritable.com
+      - peer1.client.veritable.com
+    certificateAuthorities:
+      - ca.client.veritable.com
+    adminPrivateKey:
+      path: ../../veritable-network/crypto-config/peerOrganizations/client.veritable.com/users/Admin@client.veritable.com/msp/keystore/88e53c0b5711f87decd0c47bdd20af3e4bb6eb8d2c1ee357cb4900bb287bc65d_sk
+    signedCert:
+      path: ../../veritable-network/crypto-config/peerOrganizations/client.veritable.com/users/Admin@client.veritable.com/msp/signcerts/Admin@client.veritable.com-cert.pem
+orderers:
+  orderer.jea.com:
+    url: grpcs://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.jea.com
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/ordererOrganizations/jea.com/orderers/orderer.jea.com/msp/tlscacerts/tlsca.jea.com-cert.pem
+
+  orderer2.jea.com:
+    url: grpcs://localhost:8050
+    grpcOptions:
+      ssl-target-name-override: orderer2.jea.com
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/ordererOrganizations/jea.com/orderers/orderer2.jea.com/msp/tlscacerts/tlsca.jea.com-cert.pem
+  
+  orderer3.jea.com:
+    url: grpcs://localhost:9050
+    grpcOptions:
+      ssl-target-name-override: orderer3.jea.com
+    tlsCACerts:
+      path: ./../veritable-network/crypto-config/ordererOrganizations/jea.com/orderers/orderer3.jea.com/msp/tlscacerts/tlsca.jea.com-cert.pem
+
+  orderer4.jea.com:
+    url: grpcs://localhost:10050
+    grpcOptions:
+      ssl-target-name-override: orderer.jea.com
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/ordererOrganizations/jea.com/orderers/orderer4.jea.com/msp/tlscacerts/tlsca.jea.com-cert.pem
+
+  orderer5.jea.com:
+    url: grpcs://localhost:11050
+    grpcOptions:
+      ssl-target-name-override: orderer5.jea.com
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/ordererOrganizations/jea.com/orderers/orderer5.jea.com/msp/tlscacerts/tlsca.jea.com-cert.pem
+
+peers:
+  peer0.notary.veritable.com:
+    url: grpcs://localhost:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.notary.veritable.com
+      request-timeout: 120001
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/notary.veritable.com/peers/peer0.notary.veritable.com/msp/tlscacerts/tlsca.notary.veritable.com-cert.pem
+
+  peer1.notary.veritable.com:
+    url: grpcs://localhost:8051
+    grpcOptions:
+      ssl-target-name-override: peer0.notary.veritable.com
+      request-timeout: 120001
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/notary.veritable.com/peers/peer1.notary.veritable.com/msp/tlscacerts/tlsca.notary.veritable.com-cert.pem
+  
+  peer0.client.veritable.com:
+    url: grpcs://localhost:9051
+    grpcOptions:
+      ssl-target-name-override: peer0.client.veritable.com
+      request-timeout: 120001
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/client.veritable.com/peers/peer0.client.veritable.com/msp/tlscacerts/tlsca.client.veritable.com-cert.pem
+
+  peer1.client.veritable.com:
+    url: grpcs://localhost:10051
+    grpcOptions:
+      ssl-target-name-override: peer1.client.veritable.com
+      request-timeout: 120001
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/client.veritable.com/peers/peer1.client.veritable.com/msp/tlscacerts/tlsca.client.veritable.com-cert.pem
+
+certificateAuthorities:
+  ca.notary.veritable.com:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/notary.veritable.com/ca/ca.notary.veritable.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.notary.veritable.com
+  ca.client.veritable.com:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: ../../veritable-network/crypto-config/peerOrganizations/client.veritable.com/ca/ca.client.veritable.com-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca.client.veritable.com
